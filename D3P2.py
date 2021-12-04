@@ -30,6 +30,7 @@ for p in range(0, 12):
                 drops.insert(index, d)
                 index += 1
         drops.reverse()
+        lines.reverse()
         print(f'dropping {p}')
         for i in drops:
             lines.pop(i)
@@ -70,6 +71,7 @@ for p in range(0, 12):
                 dropping.insert(index2, d)
                 index2 += 1
         dropping.reverse()
+        lines2.reverse()
         print(f'dropping {p}')
         for i in dropping:
             lines2.pop(i)
