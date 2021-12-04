@@ -2,62 +2,82 @@ file3 = open('D3_input.txt', 'r')
 lines = file3.readlines()
 oxygen = ''
 C02 = ''
+index = 0
 for p in range(0, 12):
     print(f'p= {p}')
     zeros = 0
     ones = 0
-    for line in lines:
-        if line[p] == '0':
-            zeros += 1
-        else:
-            ones += 1
+    if len(lines) > 2:
+        for line in lines:
+            if line[p] == '0':
+                zeros += 1
+            else:
+                ones += 1
         if zeros > ones:
             oxygen = oxygen + '0'
         else:
             oxygen = oxygen + '1'
-    dropper = oxygen[p]
-    drops = []
-    print(f'dropper value = {dropper}')
-    lines_len = len(lines)
-    print(f'{p} stage length = {lines_len}')
-    for d in range(0, lines_len - 1):
-        print(f'd= {d}')
-        print(f'line = {lines[d]}')
-        if lines_len == 2:
-            if lines[d][p] == '1':
-                oxygen = lines[d]
-                print(f'oxygen = {oxygen}')
-        elif lines[d][p] != oxygen[p]:
-            drops.append[d]
-            print('dropped')
-        dropping = drops.reverse()
-        for i in dropping:
+        dropper = oxygen[p]
+        drops = []
+        print(f'dropper value = {dropper}')
+        lines_len = len(lines)
+        print(f'{p} stage length = {lines_len}')
+        for d in range(0, lines_len - 1):
+            # print(f'd= {d}')
+            # print(f'line = {lines[d]}')
+            if lines[d][p] != oxygen[p]:
+                drops.insert(index, d)
+                index += 1
+        drops.reverse()
+        print(f'dropping {p}')
+        for i in drops:
             lines.pop(i)
-oxygen = int(oxygen, 2)
+        print(f'O2 current = {oxygen}')
+    elif len(lines) == 2:
+        if lines[0][p] == '1':
+            oxygen = lines[0]
+        else:
+            oxygen = lines[1]
+print(f'oxygen_string= {oxygen}')
+oxygen = int(oxygen[:11], 2)
+print(f'O2 number= {oxygen}')
 file3_2 = open('D3_input.txt', 'r')
 lines2 = file3_2.readlines()
 for p in range(0, 12):
+    print(f'p={p}')
     zeros = 0
     ones = 0
-    for line in lines2:
-        if line[p] == '0':
-            zeros += 1
-        else:
-            ones += 1
+    if len(lines2) > 2:
+        for line in lines2:
+            if line[p] == '0':
+                zeros += 1
+            else:
+                ones += 1
         if zeros < ones:
             C02 += '0'
         else:
             C02 += '1'
-    dropper = C02[p]
-    print(f'dropper value = {dropper}')
-    lines2_len = len(lines2)
-    print(f'{p} stage length = {lines2_len}')
-    for d in range(0, lines2_len) :
-        if lines2_len == 2:
-            if lines[d][p] == '1':
-                C02 = lines2[d]
-                print(f'C02 = {C02}')
-        elif lines[d][p] != C02[p]:
-            lines.pop(d)
-C02 = int(C02, 2)
+        dropper = C02[p]
+        dropping = []
+        index2 = 0
+        print(f'dropper value = {dropper}')
+        lines2_len = len(lines2)
+        print(f'{p} stage length = {lines2_len}')
+        for d in range(0, lines2_len - 1):
+            if lines2[d][p] != C02[p]:
+                dropping.insert(index2, d)
+                index2 += 1
+        dropping.reverse()
+        print(f'dropping {p}')
+        for i in dropping:
+            lines2.pop(i)
+        print(f'CO2 current = {C02}')
+    elif len(lines2) == 2:
+        if lines2[0][p] == '0':
+            C02 = lines2[0]
+        else:
+            C02 = lines2[1]
+print(f'CO2 Final = {C02}')
+C02 = int(C02[:11], 2)
+print(f'C02 number = {C02}')
 print(f'final = {oxygen * C02}')
