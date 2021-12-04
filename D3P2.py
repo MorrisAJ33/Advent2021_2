@@ -26,7 +26,7 @@ for p in range(0, 12):
         for d in range(0, lines_len):
             # print(f'd= {d}')
             # print(f'line = {lines[d]}')
-            if lines[d][p] != oxygen[p]:
+            if lines[d][p] == oxygen[p]:
                 drops.insert(index, d)
                 index += 1
         drops.reverse()
@@ -66,7 +66,7 @@ for p in range(0, 12):
         lines2_len = len(lines2)
         print(f'{p} stage length = {lines2_len}')
         for d in range(0, lines2_len):
-            if lines2[d][p] != C02[p]:
+            if lines2[d][p] == C02[p]:
                 dropping.insert(index2, d)
                 index2 += 1
         dropping.reverse()
