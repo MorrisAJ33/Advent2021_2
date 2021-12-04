@@ -18,6 +18,7 @@ for p in range(0, 12):
             oxygen = oxygen + '0'
         else:
             oxygen = oxygen + '1'
+        print(f'zero = {zeros}  one = {ones}')
         dropper = oxygen[p]
         drops = []
         print(f'dropper value = {dropper}')
@@ -30,7 +31,6 @@ for p in range(0, 12):
                 drops.insert(index, d)
                 index += 1
         drops.reverse()
-        lines.reverse()
         print(f'dropping {p}')
         for i in drops:
             lines.pop(i)
@@ -41,7 +41,7 @@ for p in range(0, 12):
         elif len(lines) == 2 and lines[1][p] == '1':
             oxygen = lines[1]
 print(f'oxygen_string= {oxygen}')
-oxygen = int(oxygen[:11], 2)
+oxygen = int(oxygen[:12], 2)
 print(f'O2 number= {oxygen}')
 file3_2 = open('D3_input.txt', 'r')
 lines2 = file3_2.readlines()
@@ -60,6 +60,7 @@ for p in range(0, 12):
             C02 += '0'
         else:
             C02 += '1'
+        print(f'zero = {zeros}  one = {ones}')
         dropper = C02[p]
         dropping = []
         index2 = 0
@@ -71,7 +72,6 @@ for p in range(0, 12):
                 dropping.insert(index2, d)
                 index2 += 1
         dropping.reverse()
-        lines2.reverse()
         print(f'dropping {p}')
         for i in dropping:
             lines2.pop(i)
@@ -79,9 +79,9 @@ for p in range(0, 12):
     elif len(lines2) <= 2:
         if lines2[0][p] == '0':
             C02 = lines2[0]
-        elif len(lines2) == 2 and lines2[1][p] =='0':
+        elif len(lines2) == 2 and lines2[1][p] == '0':
             C02 = lines2[1]
-print(f'CO2 Final = {C02}')
+print(f'CO2 Final = {C02[:12]}')
 C02 = int(C02[:11], 2)
 print(f'C02 number = {C02}')
 print(f'final = {oxygen * C02}')
